@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maletín voxel 3D</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="manual.css">
+
+  <!-- Three.js r160 y sus módulos (addons) desde CDN -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body data-fondo="0">
+  <!-- El canvas transparente se inserta aquí; el fondo lo pone la página -->
+  <main id="escena" aria-label="Maletín voxel 3D interactivo"></main>
+
+  <header class="titulo">
+    <h1>Maletín voxel</h1>
+    <p>Resuelve todo antes de que se acabe el tiempo: 3 acertijos (frente), palabra secreta y colores (parte trasera). Vigila el fondo: rata = botón derecho, mosca = botón izquierdo (o teclas D y A).</p>
+  </header>
+
+  <!-- Panel de desactivación: se dibuja sobre la placa superior TRASERA de la tapa del maletín -->
+  <section id="bomba" class="bomba" data-estado="inicio" aria-label="Panel de desactivación de la bomba" hidden>
+    <span class="bomba__perno bomba__perno--izq" aria-hidden="true"></span>
+    <span class="bomba__perno bomba__perno--der" aria-hidden="true"></span>
+
+    <div class="bomba__cabecera">
+      <h2 class="bomba__titulo">Descubre la palabra secreta</h2>
+      <div class="bomba__reloj" id="bomba-reloj" role="timer" aria-label="Tiempo restante">00:00</div>
+    </div>
+    <p class="bomba__instruccion" id="bomba-instruccion"></p>
+    <ol class="bomba__imagenes" id="bomba-imagenes" aria-label="Imágenes del puzzle"></ol>
+
+    <form class="bomba__form" id="bomba-form" autocomplete="off">
+      <p class="bomba__mensaje" id="bomba-mensaje" role="status" aria-live="polite"></p>
+      <label class="sr-only" for="bomba-input">Palabra secreta</label>
+      <input id="bomba-input" class="bomba__input" type="text" inputmode="text" autocapitalize="characters"
+             autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="____">
+      <button class="bomba__btn" id="bomba-confirmar" type="submit">Desactivar</button>
+    </form>
+
+    <!-- Inicio y final de partida -->
+    <div class="bomba__velo" id="bomba-velo">
+      <h3 class="bomba__velo-titulo" id="velo-titulo">Desactiva la bomba</h3>
+      <p class="bomba__velo-texto" id="velo-texto"></p>
+      <button class="bomba__btn" id="bomba-accion" type="button">Comenzar</button>
+    </div>
+  </section>
+
+  <p class="aviso-panel" id="aviso-panel" hidden>Gira el maletín hacia ti o pulsa «Restablecer cámara» para ver el panel.</p>
+
+  <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+    <button type="button" class="lightbox__cerrar" aria-label="Cerrar">✕</button>
+    <figure>
+      <img id="lightbox-img" alt="">
+      <figcaption id="lightbox-pie"></figcaption>
+    </figure>
+  </div>
+
+  <div class="destello" id="destello" aria-hidden="true"></div>
+
+  <!-- Interfaz de inicio: se ve de frente, con el temporizador grande del maletín -->
+  <section id="inicio-partida" class="inicio" aria-label="Inicio de partida">
+    <h2>Desactiva la bomba</h2>
+    <p>5 desafíos: 3 acertijos (frente), palabra con imágenes y colores (atrás). Vigila a la rata y a la mosca.</p>
+    <button id="btn-comenzar" type="button">Comenzar</button>
+  </section>
+
+  <nav class="controles" aria-label="Controles de la escena">
+    <button id="btn-pausa" type="button" aria-pressed="false">Pausar</button>
+    <button id="btn-reset" type="button">Ver frente</button>
+    <button id="btn-trasera" type="button">Ver panel trasero</button>
+    <button id="btn-fondo" type="button">Cambiar fondo</button>
+    <button id="btn-menu" type="button">Menú</button>
+  </nav>
+
+  <script src="acertijos.js"></script>
+  <script src="criaturas.js"></script>
+  <script src="interferencias.js"></script>
+  <script src="manual.js"></script>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
