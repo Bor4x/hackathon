@@ -21,7 +21,7 @@ const img = (id, nombre, categoria) => ({
   nombre,                                   // solo interno: nunca se muestra al jugador
   categoria,
   inicial: normalizar(nombre)[0],
-  src: `img/${id}.svg`
+  src: new URL(`./img/${id}.svg`, import.meta.url).href
 });
 
 export const IMAGENES = [
