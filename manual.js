@@ -279,7 +279,7 @@
   raiz.id = 'manual-ui';
   raiz.setAttribute('role', 'dialog');
   raiz.setAttribute('aria-modal', 'true');
-  raiz.setAttribute('aria-label', 'Desactiva la bomba: bienvenida y manual');
+  raiz.setAttribute('aria-label', 'PERUKISTAN: bienvenida y manual');
   raiz.hidden = true;
 
   let actual = -1;                 // -1 = bienvenida
@@ -292,7 +292,7 @@
       <div class="mn-hero">
         <div>
           <span class="mn-etiqueta-lab"><i class="mn-led"></i>LABORATORIO DE DESACTIVACIÓN · BOMBA ARMADA</span>
-          <h1 class="mn-titulo">DESACTIVA<span>LA BOMBA</span></h1>
+          <h1 class="mn-titulo">PERUKISTAN<span>DESACTIVA LA BOMBA</span></h1>
           <p class="mn-lema">Resuelve los desafíos, evita las interferencias y desactiva la bomba antes de que termine el tiempo.</p>
           <div class="mn-botones">
             <button type="button" class="mn-btn mn-btn--grande" data-acc="manual">▶ VER MANUAL</button>
@@ -316,7 +316,7 @@
     const prev = actual > 0;
     return `
     <header class="mn-top">
-      <span class="mn-marca">DESACTIVA LA BOMBA</span>
+      <span class="mn-marca">PERUKISTAN</span>
       <div class="mn-progreso">
         <div class="mn-progreso__fila"><span>MANUAL · SECCIÓN ${actual + 1}/${N}</span><span>LEÍDO ${vistas.size}/${N}</span></div>
         <div class="mn-barra" aria-hidden="true">${PAGINAS.map((_, i) => `<i class="${i === actual ? 'actual' : vistas.has(i) ? 'vista' : ''}"></i>`).join('')}</div>
@@ -412,13 +412,14 @@
     alComenzar: null,
     get abierto() { return !raiz.hidden; },
     mostrarBienvenida: mostrar,
+    abrirManual() { mostrar(); ir(0, 'adelante'); },   // tras la introducción: directo a la sección 1
     ocultar
   };
   global.ManualUI = api;
 
   function montar() {
     document.body.appendChild(raiz);
-    mostrar();
+    if (!global.PERUKISTAN_INTRO) mostrar();      // con intro.js, la introducción abre el manual al terminar u omitirse
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', montar);
   else montar();

@@ -462,3 +462,6 @@ body.sacudida #escena, body.sacudida .titulo { animation: susto-vibra .08s linea
 .inicio button:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--borde); }
 /* Pausa: congela también las animaciones CSS del juego */
 body.pausado #susto, body.pausado.sacudida, body.pausado .destello.activo { animation-play-state: paused !important; }
+
+/* PERUKISTAN: marca en el velo de inicio/victoria/derrota */
+.bomba__velo-marca { margin: 0 0 4px; font-family: "Silkscreen", monospace; font-size: .7em; letter-spacing: .2em; color: #ffb000; }

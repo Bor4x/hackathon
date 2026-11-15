@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Maletín voxel 3D</title>
+  <title>PERUKISTAN · Desactiva la bomba antes de que sea demasiado tarde</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="manual.css">
+  <link rel="stylesheet" href="intro.css">
 
   <!-- Three.js r160 y sus módulos (addons) desde CDN -->
   <script type="importmap">
@@ -25,7 +26,7 @@
   <main id="escena" aria-label="Maletín voxel 3D interactivo"></main>
 
   <header class="titulo">
-    <h1>Maletín voxel</h1>
+    <h1>PERUKISTAN</h1>
     <p>Resuelve todo antes de que se acabe el tiempo: 3 acertijos (frente), palabra secreta y colores (parte trasera). Vigila el fondo: rata = botón derecho, mosca = botón izquierdo (o teclas D y A).</p>
   </header>
 
@@ -51,6 +52,7 @@
 
     <!-- Inicio y final de partida -->
     <div class="bomba__velo" id="bomba-velo">
+      <p class="bomba__velo-marca">PERUKISTAN</p>
       <h3 class="bomba__velo-titulo" id="velo-titulo">Desactiva la bomba</h3>
       <p class="bomba__velo-texto" id="velo-texto"></p>
       <button class="bomba__btn" id="bomba-accion" type="button">Comenzar</button>
@@ -71,8 +73,8 @@
 
   <!-- Interfaz de inicio: se ve de frente, con el temporizador grande del maletín -->
   <section id="inicio-partida" class="inicio" aria-label="Inicio de partida">
-    <h2>Desactiva la bomba</h2>
-    <p>5 desafíos: 3 acertijos (frente), palabra con imágenes y colores (atrás). Vigila a la rata y a la mosca.</p>
+    <h2>PERUKISTAN</h2>
+    <p>Desactiva la bomba antes de que sea demasiado tarde. 5 desafíos: 3 acertijos (frente), palabra con imágenes y colores (atrás). Vigila a la rata y a la mosca.</p>
     <button id="btn-comenzar" type="button">Comenzar</button>
   </section>
 
@@ -87,6 +89,7 @@
   <script src="acertijos.js"></script>
   <script src="criaturas.js"></script>
   <script src="interferencias.js"></script>
+  <script src="intro.js"></script>
   <script src="manual.js"></script>
   <script type="module" src="script.js"></script>
 </body>

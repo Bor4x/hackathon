@@ -1,0 +1,31 @@
+/* PERUKISTAN · introducción narrativa 2D pixel art (intro.js) */
+.pk { position: fixed; inset: 0; z-index: 60; background: #05060c; display: grid; place-items: center; transition: opacity .45s; font-family: "Silkscreen", "Courier New", monospace; user-select: none; }
+.pk[hidden] { display: none; }
+.pk--sale { opacity: 0; pointer-events: none; }
+body.intro-abierta .inicio, body.intro-abierta .controles, body.intro-abierta .titulo { display: none !important; }
+.pk-stage { --u: 3px; position: relative; width: min(100vw, calc(100vh * 16 / 9)); aspect-ratio: 16 / 9; background: #000; overflow: hidden; }
+.pk-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; image-rendering: crisp-edges; }
+.pk-titulo { position: absolute; inset: 0; display: grid; align-content: center; justify-items: center; gap: calc(var(--u) * 5); text-align: center; background: linear-gradient(rgba(5,6,12,.15), rgba(5,6,12,.7)); padding: 0 4%; }
+.pk-titulo[hidden], .pk-texto[hidden], .pk-dialogo[hidden] { display: none; }
+.pk-titulo h1 { margin: 0; font-size: calc(var(--u) * 15); letter-spacing: .06em; color: #ff3b30; text-shadow: calc(var(--u)*.8) calc(var(--u)*.8) 0 #3a0a08, 0 0 calc(var(--u) * 6) rgba(255,59,48,.6); }
+.pk-titulo p { margin: 0; font-size: calc(var(--u) * 4.2); color: #ffe9b0; text-shadow: calc(var(--u)*.4) calc(var(--u)*.4) 0 #000; max-width: 90%; }
+.pk-btn { font: inherit; font-size: calc(var(--u) * 6); font-weight: 700; padding: calc(var(--u) * 2.5) calc(var(--u) * 12); color: #fff; background: #d62828; border: calc(var(--u) * .9) solid #fff; box-shadow: calc(var(--u) * 1.2) calc(var(--u) * 1.2) 0 #000; cursor: pointer; animation: pk-latido 1.2s steps(2) infinite; }
+.pk-btn:hover, .pk-btn:focus-visible { background: #ff3b30; outline: none; }
+.pk-btn:active { transform: translate(calc(var(--u) * .8), calc(var(--u) * .8)); box-shadow: none; }
+@keyframes pk-latido { 50% { transform: scale(1.04); } }
+.pk-texto { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
+.pk-texto p { margin: 0; font-size: calc(var(--u) * 9); color: #fff; text-shadow: calc(var(--u)*.6) calc(var(--u)*.6) 0 #000; animation: pk-aparece 1.6s steps(8) both; }
+@keyframes pk-aparece { from { opacity: 0; } to { opacity: 1; } }
+.pk-dialogo { position: absolute; left: 3%; right: 3%; bottom: 4%; min-height: calc(var(--u) * 34); padding: calc(var(--u) * 3.5) calc(var(--u) * 5); background: rgba(8, 10, 22, .88); color: #f4efe0; cursor: pointer;
+  box-shadow: 0 calc(var(--u)*-1) 0 0 #f4efe0, 0 calc(var(--u)) 0 0 #f4efe0, calc(var(--u)*-1) 0 0 0 #f4efe0, calc(var(--u)) 0 0 0 #f4efe0, calc(var(--u)*2) calc(var(--u)*2) 0 0 #000; }
+.pk-dialogo b { position: absolute; top: calc(var(--u) * -4.5); left: calc(var(--u) * 4); padding: calc(var(--u) * .8) calc(var(--u) * 2.5); font-size: calc(var(--u) * 3.6); color: #05060c; background: #ffb000; }
+.pk-dialogo b[data-quien="Señora"] { background: #ff8aa8; } .pk-dialogo b[data-quien="Operador PNP"] { background: #4aa8ff; } .pk-dialogo b[data-quien="Policía"] { background: #8ac24a; }
+.pk-dialogo p { margin: 0; font-family: "Share Tech Mono", "Courier New", monospace; font-size: calc(var(--u) * 5); line-height: 1.35; }
+.pk-dialogo i { position: absolute; right: calc(var(--u) * 3); bottom: calc(var(--u) * 1.5); font-style: normal; font-size: calc(var(--u) * 4); color: #ffb000; animation: pk-rebota .7s steps(2) infinite; }
+@keyframes pk-rebota { 50% { transform: translateY(calc(var(--u) * 1)); } }
+.pk-barra { position: absolute; top: calc(var(--u) * 2); left: calc(var(--u) * 2); right: calc(var(--u) * 2); display: flex; align-items: center; gap: calc(var(--u) * 2); z-index: 2; }
+.pk-mini { font: inherit; font-size: calc(var(--u) * 3.2); min-width: 32px; min-height: 32px; padding: 0 calc(var(--u) * 2.5); color: #f4efe0; background: rgba(8,10,22,.8); border: 2px solid #f4efe0; cursor: pointer; }
+.pk-mini:hover, .pk-mini:focus-visible { background: #d62828; outline: none; }
+.pk-omitir { margin-left: auto; }
+.pk-barra input[type=range] { width: calc(var(--u) * 22); accent-color: #ffb000; }
+@media (prefers-reduced-motion: reduce) { .pk-btn, .pk-dialogo i { animation: none; } }
